@@ -97,18 +97,22 @@ public class ChatClient extends JFrame implements ActionListener {
 
                     @Override
                     public void onMessage(String message) {
+                        System.out.println("got: " + message + "\n");
                         ta.append("got: " + message + "\n");
                         ta.setCaretPosition(ta.getDocument().getLength());
                     }
 
                     @Override
                     public void onOpen(ServerHandshake handshake) {
+                        System.out.println("You are connected to ChatServer: " + getURI() + "\n");
                         ta.append("You are connected to ChatServer: " + getURI() + "\n");
                         ta.setCaretPosition(ta.getDocument().getLength());
                     }
 
                     @Override
                     public void onClose(int code, String reason, boolean remote) {
+                        System.out.println("You have been disconnected from: " + getURI() + "; Code: " + code + " " + reason
+                                + "\n");
                         ta.append(
                                 "You have been disconnected from: " + getURI() + "; Code: " + code + " " + reason
                                         + "\n");
@@ -121,6 +125,7 @@ public class ChatClient extends JFrame implements ActionListener {
 
                     @Override
                     public void onError(Exception ex) {
+                        System.out.println("Exception occurred ...\n" + ex + "\n");
                         ta.append("Exception occurred ...\n" + ex + "\n");
                         ta.setCaretPosition(ta.getDocument().getLength());
                         ex.printStackTrace();
